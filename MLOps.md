@@ -15,9 +15,9 @@ Instead of getting more training data to enhance accuracy, it is better for us t
 
 Note that big data problems where there's a long tail of rare events in the input(web search, self-driving case, recommender systems) are also small data problems.
 
-### Ensure consistently high-quality data in all phases of ML project lifecycle.
+**Ensure consistently high-quality data in all phases of ML project lifecycle.**
 
-### Good data is:
+**Good data is:**
 * Defined consistently (definition of label y is unambiguous)
 * Cover of important cases (good coverage of input x)
 * Has timely feedback from production data
