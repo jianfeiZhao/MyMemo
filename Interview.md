@@ -1,3 +1,16 @@
+### 常见激活函数
+* sigmoid和softmax  
+sigmoid只做值非线性变化映射到(0,1)，用于二分类。  
+softMax变化过程计算所有结果的权重，使得多值输出的概率和为1。用于多分类。指数运算速度慢。  
+* tanh函数  
+双曲正切函数。以0为中心，有归一化的作用。会产生梯度消失。  
+* ReLu和Leaky ReLu  
+大于0为1，小于0为0，计算速度快。  
+leaky输入为负时，梯度仍有值，避免死掉。  
+
+### XGBoost
+
+
 ### XGBoost与GBDT的区别是什么？
 * XGBoost加入了R2正则化项；
 * XGBoost生成CART树考虑了树的复杂度，GDBT未考虑；
