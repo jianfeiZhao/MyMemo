@@ -49,16 +49,46 @@ Adagrad, (Adadelta, RMSprop), Adam可以视为一类算法。RMSprop 与 Adadelt
 * 等频率（深）  
 * 卡方分箱（有监督）  
 
-### XGBoost
+### 随机森林
+* 常见调参：  
+n_estimators: 森林中决策树的个数，默认是10  
+criterion：度量分裂质量，信息熵或者基尼指数  
+max_features：特征数达到多大时进行分割  
+max_depth: 树的最大深度  
+min_samples_split: 分割内部节点所需的最少样本数量  
+bootstrap: 是否采用有放回式的抽样方式  
+min_impurity_split：树增长停止的阀值  
 
+### XGBoost
+* 特征重要性的评估：损失函数在特征分裂前后的平均增益   
+* XGB的分裂准则：损失函数增益最大化  
+* XGB常用调参：  
+n_estimators: 迭代次数，子树的数量  
+max_depth、min_child_weigh：树深，孩子节点最小样本权重和  
+gamma、alpha、lambda：后剪枝比例，L1，L2正则化系数  
+subsample、colsample_bytree：样本采样、列采样  
+eta: 削减已学树的影响，为后面学习腾空间  
+tree_method：gpu_histGPU 加速  
+
+### LightGBM
+* 常用调参：  
+num_iterations、learning_rate：迭代次数，学习率  
+max_depth、min_data_in_leaf、num_leaves：控制树的大小  
+lambda_l1、lambda_l2、min_split_gain：L1、L2、最小切分  
+feature_fraction、bagging_fraction：随机采样特征和数据  
+device：GPU  
 
 ### XGBoost与GBDT的区别是什么？
 * XGBoost加入了R2正则化项；
 * XGBoost生成CART树考虑了树的复杂度，GDBT未考虑；
+* XGB支持线性分类器做基分类器；
 * XGBoost是拟合上一轮损失函数的二阶导展开，GDBT是拟合上一轮损失函数的一阶导展开，因此XGBoost的准确性更高，且满足相同的训练效果需要的迭代次数更少；
-* XGboost支持并行计算，GBDT只能串行计算。
-* 节点分裂方式不同，GBDT是基尼系数；XGB是Gain。
-* XGBoost里面有类似于随机森林的随机样本特征选取。
+* 寻找分割点时不考虑缺失值。分别计算缺失值在左右的增益，默认在右。
+* XGboost计算特征增益时支持并行计算，GBDT只能串行计算。
+* 节点分裂方式不同，GBDT是基尼系数，XGB是Gain。
+* 近似直方图算法：采用加权分位数法来搜索近似最优分裂点。
+* Shrinkage(缩减）：将学习到的模型 * 系数，削减已学模型的权重。
+* XGBoost里面有类似于随机森林的随机特征采样。
 
 ### LightGBM与XGBoost的区别
 LightGBM是基于XGBoost进行修改的，采用了分桶的方式，减少了分裂点数；基于梯度的单边采样法，减少了样本数（保留了梯度较大的样本，对梯度较小的样本随机采样）；互斥特征捆绑，用一个特征代替多个互斥特征。
