@@ -1,9 +1,9 @@
 ## From Model-centric to Data-centric
 ### Making it systematic - iteratively improving the data:
-* Train a model
-* Error analysis to identify the types of data the algorithm does poorly on(e.g., speech with car noise)
-* Either get more of that data via data augmentation, data generation or data collection(change input x) or give more consistent definition for labels if they were found to be ambiguous(change label y)
-* During deployment, monitor the performance and flow new data back for continuous retrain/update of model regularly.
+1. Train a model
+2. Error analysis to identify the types of data the algorithm does poorly on(e.g., speech with car noise)
+3. Either get more of that data via data augmentation, data generation or data collection(change input x) or give more consistent definition for labels if they were found to be ambiguous(change label y)
+4. During deployment, monitor the performance and flow new data back for continuous retrain/update of model regularly.
 
 ## Traditional software vs AI software
 Traditional: Scope project -> Develop code -> Deploy in production
