@@ -146,6 +146,9 @@ print(id(a) == id(c))    # False
 print(id(a) == id(d))    # False  
 print(id(a[2] == id(d[2])))    # False  
 # 对于 False 修改其中一个的值，另一个不变  
+
+a == c   # True
+a is c   # False  ### is是判断id(a)和id(c)是否一致
 ```
 ### Python进程间用队列实现通信。  
 
